@@ -27,6 +27,13 @@ header p {
   font-weight: bold;
 }
 
+/* Community Message Heading */
+h2 {
+  color: #ffca28;
+  font-size: 2em;
+  margin-bottom: 20px;
+}
+
 /* Image Display */
 #imageDisplay {
   text-align: center;
@@ -55,6 +62,21 @@ header p {
   font-size: 1.1em;
   line-height: 1.6;
   box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+/* Social Share Buttons */
+.social-btn {
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+  margin: 5px;
+}
+
+.social-btn:hover {
+  background-color: #0056b3;
 }
 
 /* Likes Section */
