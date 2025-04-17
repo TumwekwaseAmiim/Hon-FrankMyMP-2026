@@ -1,72 +1,30 @@
-document.addEventListener("DOMContentLoaded", () => {
-  const likeBtn = document.getElementById("likeBtn");
-  const likeCount = document.getElementById("likeCount");
-  const newsForm = document.getElementById("newsForm");
-  const photoInput = document.getElementById("photoInput");
-  const captionInput = document.getElementById("captionInput");
-  const imagesContainer = document.getElementById("imagesContainer");
-
-  // Initialize likes from localStorage
-  let likes = localStorage.getItem("likes") || 0;
-  let liked = localStorage.getItem("liked") === "true";
-  likeCount.textContent = likes;
-
-  if (liked) {
-    likeBtn.disabled = true;
-    likeBtn.textContent = "❤️ Liked";
-  }
-
-  likeBtn.addEventListener("click", () => {
-    if (!liked) {
-      likes++;
-      localStorage.setItem("likes", likes);
-      localStorage.setItem("liked", "true");
-      likeCount.textContent = likes;
-      likeBtn.textContent = "❤️ Liked";
+document.addEventListener('DOMContentLoaded', () => {
+    // Get like button and like count elements
+    const likeBtn = document.getElementById('likeBtn');
+    const likeCountElem = document.getElementById('likeCount');
+  
+    // Check if the user has already liked this post (using localStorage)
+    if (localStorage.getItem('likedFrank') === 'yes') {
       likeBtn.disabled = true;
+      likeBtn.textContent = 'You have already liked this';
     }
-  });
-
-  newsForm.addEventListener("submit", async (e) => {
-    e.preventDefault();
-    const formData = new FormData();
-    formData.append("photo", photoInput.files[0]);
-    formData.append("caption", captionInput.value);
-
-    const res = await fetch("/upload", {
-      method: "POST",
-      body: formData
+  
+    // Like button click handler
+    likeBtn.addEventListener('click', async () => {
+      if (localStorage.getItem('likedFrank') === 'yes') {
+        alert('You have already liked this!');
+        return;
+      }
+  
+      // Send a request to the server to update the like count
+      const res = await fetch('/likes', { method: 'POST' });
+      const data = await res.json();
+  
+      // Update the like count and disable the button
+      likeCountElem.textContent = `Likes: ${data.likes}`;
+      localStorage.setItem('likedFrank', 'yes');  // Remember that the user liked
+      likeBtn.disabled = true;  // Disable the button to prevent further likes
+      likeBtn.textContent = 'You have already liked this';
     });
-
-    const data = await res.json();
-    if (data.filename) {
-      displayNewsItem(data.filename, captionInput.value);
-      photoInput.value = "";  // Reset file input
-      captionInput.value = "";  // Reset caption input
-    }
   });
-
-  function displayNewsItem(filename, caption) {
-    const newsItem = document.createElement("div");
-    newsItem.classList.add("news-item");
-
-    const img = document.createElement("img");
-    img.src = `/uploads/${filename}`;
-    newsItem.appendChild(img);
-
-    const captionText = document.createElement("p");
-    captionText.textContent = caption;
-    newsItem.appendChild(captionText);
-
-    imagesContainer.appendChild(newsItem);
-  }
-
-  // Fetch and display already uploaded news items (images and captions)
-  fetch("/uploads-list")
-    .then(res => res.json())
-    .then(files => {
-      files.forEach(file => {
-        displayNewsItem(file.filename, "Caption for image"); // Replace with actual caption when storing it in backend
-      });
-    });
-});
+  

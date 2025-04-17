@@ -1,32 +1,18 @@
-document.addEventListener("DOMContentLoaded", () => {
-    const chatBox = document.getElementById("chatBox");
-    const sendBtn = document.getElementById("sendBtn");
-    const messages = document.getElementById("messages");
-  
-    sendBtn.addEventListener("click", async () => {
-      const userMessage = chatBox.value.trim();
-      if (!userMessage) return;
-  
-      appendMessage("You", userMessage);
-      chatBox.value = "";
-  
-      const res = await fetch("/chat", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ message: userMessage }),
-      });
-  
-      const data = await res.json();
-      appendMessage("FrankBot", data.reply);
-    });
-  
-    function appendMessage(sender, text) {
-      const msg = document.createElement("div");
-      msg.innerHTML = `<strong>${sender}:</strong> ${text}`;
-      messages.appendChild(msg);
-      messages.scrollTop = messages.scrollHeight;
-    }
-  });
-  
+document.getElementById('sendBtn').addEventListener('click', () => {
+  const userMessage = document.getElementById('chatBox').value;
+  const messagesContainer = document.getElementById('messages');
+  const userMessageDiv = document.createElement('div');
+  userMessageDiv.textContent = `You: ${userMessage}`;
+  messagesContainer.appendChild(userMessageDiv);
+
+  // Simple response logic for FrankBot
+  const botMessageDiv = document.createElement('div');
+  if (userMessage.toLowerCase().includes('frank')) {
+    botMessageDiv.textContent = `FrankBot: Hon. Frank Tumwebaze is a visionary leader, deeply committed to his community!`;
+  } else {
+    botMessageDiv.textContent = `FrankBot: Sorry, I don't understand that yet.`;
+  }
+  messagesContainer.appendChild(botMessageDiv);
+
+  document.getElementById('chatBox').value = '';  // Clear input field
+});
