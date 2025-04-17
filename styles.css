@@ -30,10 +30,12 @@ header p {
 
 /* Community Message Heading */
 h2 {
-  color: #ffca28;
+  color: #ff6f00; /* Darker orange color */
   font-size: 2em;
   margin-bottom: 20px;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3); /* Subtle shadow for better readability */
 }
+
 
 /* Image Display */
 #imageDisplay {
