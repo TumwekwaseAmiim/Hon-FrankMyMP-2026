@@ -1,0 +1,144 @@
+/* General Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #fffbea; /* light yellow */
+  color: #333;
+  padding: 20px;
+}
+
+/* Header */
+header {
+  background-color: #ffeb3b;
+  color: #000;
+  padding: 15px;
+  text-align: center;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+header p {
+  margin-top: 8px;
+  font-weight: bold;
+}
+
+/* Image Display */
+#imageDisplay {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+#imageDisplay img {
+  width: 100%;
+  max-width: 600px;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+#imageDisplay p {
+  margin-top: 10px;
+  font-style: italic;
+}
+
+/* Support Text Section */
+#supportText {
+  background-color: #fff9c4;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  font-size: 1.1em;
+  line-height: 1.6;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+/* Likes Section */
+#likesSection {
+  text-align: center;
+  margin: 20px 0;
+}
+
+#likeBtn {
+  background-color: #ffca28;
+  border: none;
+  padding: 10px 20px;
+  font-weight: bold;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#likeBtn:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+#likeCount {
+  display: block;
+  margin-top: 10px;
+  font-size: 1.2em;
+}
+
+/* Chat Area */
+#chatArea {
+  margin-top: 30px;
+  padding: 15px;
+  background-color: #fffde7;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+#chatDisplay {
+  height: 200px;
+  overflow-y: auto;
+  margin-bottom: 10px;
+  border: 1px solid #eee;
+  padding: 10px;
+  background: #fff;
+  border-radius: 5px;
+}
+
+.user-msg {
+  color: #000;
+  margin: 5px 0;
+}
+
+.bot-msg {
+  color: #00796b;
+  margin: 5px 0;
+  font-weight: bold;
+}
+
+#chatInput {
+  width: 75%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+#chatSendBtn {
+  padding: 10px 15px;
+  background-color: #ffca28;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-left: 5px;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  margin-top: 40px;
+  font-size: 0.95em;
+}
+
+footer a {
+  color: #007bff;
+  text-decoration: none;
+}
